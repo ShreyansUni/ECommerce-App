@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ECommerce_App.Pages.ProductListPage"
+             Title="ProductListPage">
+    <StackLayout Padding="10">
+        <SearchBar Placeholder="Search printers..." TextChanged="OnSearchBarTextChanged" />
+        <CollectionView ItemsSource="{Binding Printers}" Margin="0,10,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" LineBreakMode="TailTruncation"/>
+                            <Label Text="{Binding Rate}" FontSize="14" TextColor="Green"/>
+                            <Button Text="View Details" CommandParameter="{Binding .}" Clicked="OnProductClicked" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

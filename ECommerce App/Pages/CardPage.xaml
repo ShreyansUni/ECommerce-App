@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ECommerce_App.Pages.CardPage"
+             Title="CardPage">
+    <VerticalStackLayout Padding="10">
+        <Label Text="Your Cart" FontSize="24" FontAttributes="Bold" />
+        <CollectionView ItemsSource="{Binding CartItems}" Margin="10,10,10,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="{Binding Image}" WidthRequest="80" HeightRequest="80" />
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontSize="16" />
+                            <Label Text="{Binding Rate}" FontSize="14" TextColor="Green" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Proceed to Checkout" BackgroundColor="#4F46E5" TextColor="White" Margin="0,20,0,0" />
+    </VerticalStackLayout>
+</ContentPage>
