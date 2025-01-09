@@ -2,11 +2,83 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ECommerce_App.Pages.SettingsPage"
-             Title="SettingsPage">
-    <VerticalStackLayout Padding="10">
-        <Label Text="Settings" FontSize="24" HorizontalOptions="Center"/>
-        <Button Text="Change Password"/>
-        <Button Text="Notifications"/>
-        <Button Text="About Us"/>
-    </VerticalStackLayout>
+             Title="SettingsPage"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Grid>
+                <HorizontalStackLayout VerticalOptions="Start" Spacing="10" Margin="10">
+                    <!-- Back Button Icon -->
+                    <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
+               WidthRequest="40" HeightRequest="40">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackButton" />
+                        </Frame.GestureRecognizers>
+                        <Image Source="frame.png" WidthRequest="20" HeightRequest="20" />
+                    </Frame>
+
+                    <!-- Label Text for Settings -->
+                    <Label Text="Settings" FontAttributes="Bold" FontSize="20" 
+                           VerticalOptions="Center" Margin="100,0,0,0" TextColor="Black" />
+                </HorizontalStackLayout>
+            </Grid>
+
+            <!-- Account Section -->
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True">
+                <HorizontalStackLayout Spacing="10">
+                    <Frame BackgroundColor="LightGray" CornerRadius="50" HeightRequest="50" WidthRequest="50">
+                        <Image Source="profile.png" Aspect="AspectFill" WidthRequest="100" HeightRequest="100" />
+                    </Frame>
+                    <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                        <Label Text="Mark Adam" FontAttributes="Bold" FontSize="16" TextColor="Black" />
+                        <Label Text="Sunny_Koelpin45@hotmail.com" FontSize="14" TextColor="Gray" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Settings Options -->
+            <VerticalStackLayout Spacing="15">
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="notification.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Notification" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                        <Image Source="greater.png" Margin="190,0,0,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="browse.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Language" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                        <Image Source="greater.png" Margin="205,0,0,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="privacy.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Privacy" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                        <Image Source="greater.png" Margin="225,0,0,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="helpcenter.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Help Center" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                        <Image Source="greater.png" Margin="187,0,0,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="aboutus.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="About us" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                        <Image Source="greater.png" Margin="210,0,0,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
 </ContentPage>

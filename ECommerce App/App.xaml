@@ -15,21 +15,21 @@
     <Application.MainPage>
         <Shell>
             <TabBar x:Name="Tabs">
-                <Tab Title="Home" Icon="dotnet_bot.png">
+                <Tab Icon="home.png">
                     <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
                 </Tab>
-                <Tab Title="PoductList" Icon="dotnet_bot.png">
-                    <ShellContent ContentTemplate="{DataTemplate pages:ProductListPage}"/>
+                <Tab Icon="search.png">
+                    <ShellContent Route="ProductList" ContentTemplate="{DataTemplate pages:ProductListPage}"/>
                 </Tab>
-                <Tab Title="ProductDetails" Icon="dotnet_bot.png">
+                <Tab Icon="shopping.png">
                     <ShellContent ContentTemplate="{DataTemplate pages:ProductDetailsPage}"/>
                 </Tab>
-                <Tab Title="Profile" Icon="dotnet_bot.png">
+                <Tab Icon="user1.png">
                     <ShellContent ContentTemplate="{DataTemplate pages:ProfilePage}"/>
                 </Tab>
-                <Tab Title="Settings" Icon="dotnet_bot.png">
+                <!--<Tab Title="Settings" Icon="dotnet_bot.png">
                     <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
-                </Tab>
+                </Tab>-->
             </TabBar>
         </Shell>
     </Application.MainPage>

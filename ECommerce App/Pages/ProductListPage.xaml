@@ -1,23 +1,155 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ECommerce_App.Pages.ProductListPage"
-             Title="ProductListPage">
-    <StackLayout Padding="10">
-        <SearchBar Placeholder="Search printers..." TextChanged="OnSearchBarTextChanged" />
-        <CollectionView ItemsSource="{Binding Printers}" Margin="0,10,0,0">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
-                            <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" LineBreakMode="TailTruncation"/>
-                            <Label Text="{Binding Rate}" FontSize="14" TextColor="Green"/>
-                            <Button Text="View Details" CommandParameter="{Binding .}" Clicked="OnProductClicked" />
-                        </VerticalStackLayout>
+             x:Class="ECommerce_App.Pages.ProductListPage">
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="10">
+
+             <!--Search Bar--> 
+            <Frame Grid.Row="2" Grid.ColumnSpan="3" CornerRadius="250" 
+               HasShadow="True" Padding="0" Margin="0,25,0,10">
+                <SearchBar Placeholder="Search here.." 
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="Center" 
+                       TextChanged="OnSearchBarTextChanged" />
+            </Frame>
+            <!--<Grid>
+                <HorizontalStackLayout VerticalOptions="Start" Spacing="10" Margin="10">
+                    --><!-- Back Button Icon --><!--
+                    <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
+   WidthRequest="40" HeightRequest="40">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackProductButton" />
+                        </Frame.GestureRecognizers>
+                        <Image Source="frame.png" WidthRequest="20" HeightRequest="20" />
                     </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+
+                    --><!-- Label Text for Settings --><!--
+                    <Label Text="Products" FontAttributes="Bold" FontSize="20" 
+               VerticalOptions="Center" Margin="100,0,0,0" TextColor="Black" />
+                </HorizontalStackLayout>
+            </Grid>-->
+
+            <!--Product Collection View--> 
+            <CollectionView ItemsSource="{Binding Printers}">
+                <CollectionView.ItemsLayout>
+                     <!--Grid layout with two columns--> 
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="0" Margin="5" CornerRadius="15" 
+                               
+                               
+                           HasShadow="True" BackgroundColor="White">
+                            <VerticalStackLayout Spacing="0">
+                                <Grid>
+                                     <!--Product Image--> 
+                                    <Image Source="{Binding Img}" Aspect="AspectFill" 
+                                           HeightRequest="120" WidthRequest="190" 
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+
+                                   
+                                    <Image Source="group.png" WidthRequest="20" HeightRequest="20" 
+                                           HorizontalOptions="End" VerticalOptions="Start" Margin="5" />
+                                </Grid>
+                                 <!--Separator--> 
+                                <BoxView HeightRequest="1" BackgroundColor="#E0E0E0" />
+                                 <!--Product Details--> 
+                                <StackLayout BackgroundColor="#F5F5F5" Padding="5">
+                                    <Label Text="{Binding Name}" FontSize="14" FontAttributes="Bold" 
+                                       LineBreakMode="TailTruncation" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                                    <Label Text="{Binding Rate, StringFormat='Price: {0:C}'}" FontSize="14" TextColor="Purple" 
+                                       FontAttributes="Bold" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+
+                                    <Button Text="View Details"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="OnProductClicked" />
+                                </StackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+    <!--<ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="10">
+
+            --><!-- Search Bar --><!--
+            <Frame Grid.Row="2" Grid.ColumnSpan="3" CornerRadius="250" 
+           HasShadow="True" Padding="0" Margin="0,25,0,10">
+                <SearchBar Placeholder="Search here.." 
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="Center" 
+                   TextChanged="OnSearchBarTextChanged" />
+            </Frame>
+
+            --><!-- Product Collection View --><!--
+            <CollectionView ItemsSource="{Binding Printers}">
+                <CollectionView.ItemsLayout>
+                    --><!-- Grid layout with two columns --><!--
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="0" Margin="5" CornerRadius="15" 
+                            HasShadow="True" BackgroundColor="White">
+                            <VerticalStackLayout Spacing="0">
+                                <Grid>
+                                    --><!-- Define Grid with 2 rows and 2 columns for proper placement --><!--
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    --><!-- Product Image --><!--
+                                    <Image Source="{Binding Img}" Aspect="AspectFill" 
+                                       HeightRequest="120" WidthRequest="190" 
+                                       Grid.Row="1" Grid.ColumnSpan="3" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+
+                                    --><!-- Back Arrow Icon - Top Left --><!--
+                                    <Image Source="back_arrow.png" WidthRequest="20" HeightRequest="20" 
+                                       HorizontalOptions="Start" VerticalOptions="Start" 
+                                       Grid.Row="0" Grid.Column="0" Margin="5" />
+
+                                    --><!-- Second Icon - Top Right --><!--
+                                    <Image Source="group.png" WidthRequest="20" HeightRequest="20" 
+                                       HorizontalOptions="End" VerticalOptions="Start" 
+                                       Grid.Row="0" Grid.Column="2" Margin="5" />
+                                </Grid>
+
+                                --><!-- Separator --><!--
+                                <BoxView HeightRequest="1" BackgroundColor="#E0E0E0" />
+
+                                --><!-- Product Details --><!--
+                                <StackLayout BackgroundColor="#F5F5F5" Padding="5">
+                                    <Label Text="{Binding Name}" FontSize="14" FontAttributes="Bold" 
+                                   LineBreakMode="TailTruncation" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                                    <Label Text="{Binding Rate, StringFormat='Price: {0:C}'}" FontSize="14" TextColor="Purple" 
+                                   FontAttributes="Bold" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+
+                                    <Button Text="View Details"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnProductClicked" />
+                                </StackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>-->
 </ContentPage>

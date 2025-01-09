@@ -17,11 +17,11 @@ public partial class ProductDetailsPage : ContentPage
         // Set a default Printer if none is provided
         SelectedPrinter = printer ?? new Printer
         {
-            name = "Default Printer",
+            Name = "Default Printer",
             Description = "Description not available.",
             PrinterType = "Unknown",
-            Rate = "N/A",
-            Image = "printer_placeholder.png"
+            Rate = 10,
+            Img = "printer_placeholder.png"
         };
 
         BindingContext = SelectedPrinter;
@@ -30,5 +30,10 @@ public partial class ProductDetailsPage : ContentPage
     private async void OnClickedCardButton(object sender, EventArgs e)
     {
             await Navigation.PushAsync(new CardPage());
+    }
+
+    private async void OnBackButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();  // This goes back to the previous page
     }
 }

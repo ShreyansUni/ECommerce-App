@@ -1,23 +1,121 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ECommerce_App.Pages.CardPage"
-             Title="CardPage">
-    <VerticalStackLayout Padding="10">
-        <Label Text="Your Cart" FontSize="24" FontAttributes="Bold" />
-        <CollectionView ItemsSource="{Binding CartItems}" Margin="10,10,10,0">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <HorizontalStackLayout Spacing="10">
-                        <Image Source="{Binding Image}" WidthRequest="80" HeightRequest="80" />
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Name}" FontSize="16" />
-                            <Label Text="{Binding Rate}" FontSize="14" TextColor="Green" />
-                        </VerticalStackLayout>
+             x:Class="ECommerce_App.Pages.CardPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="20">
+
+            <Grid>
+                <HorizontalStackLayout VerticalOptions="Start" Spacing="10" Margin="10">
+                    <!-- Back Button Icon -->
+                    <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
+                           WidthRequest="40" HeightRequest="40">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackCardButton" />
+                        </Frame.GestureRecognizers>
+                        <Image Source="frame.png" WidthRequest="20" HeightRequest="20" />
+                    </Frame>
+                    <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
+                           WidthRequest="40" HeightRequest="40">
+                        <Image Source="more.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="End" />
+                    </Frame>
+
+                    <!-- Label Text for Settings -->
+                    <Label Text="Settings" FontAttributes="Bold" FontSize="20" 
+               VerticalOptions="Center" Margin="100,0,0,0" TextColor="Black" />
+                </HorizontalStackLayout>
+            </Grid>
+            <!-- Card Items -->
+            <CollectionView ItemsSource="{Binding CartItems}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="0,0,0,20">
+                            <Grid ColumnDefinitions="100,*,50" RowDefinitions="Auto">
+
+                                <!-- Product Image -->
+                                <Image Source="{Binding ProductImage}" Grid.Column="0" WidthRequest="100" HeightRequest="80" Aspect="AspectFill"/>
+
+                                <!-- Product Details -->
+                                <VerticalStackLayout Grid.Column="1" Padding="10,0,0,0" Spacing="5">
+                                    <Label Text="{Binding ProductName}" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding ProductBrand}" FontSize="14" TextColor="Gray"/>
+                                    <Label Text="{Binding ProductPrice, StringFormat='${0}'}" FontSize="14" TextColor="Black"/>
+                                </VerticalStackLayout>
+
+                                <!-- Delete Icon and Quantity -->
+                                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                                    <ImageButton Source="trash.png" HeightRequest="24" WidthRequest="24" Command="{Binding DeleteCommand}" />
+
+                                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center" Margin="-50,10,0,0">
+                                        <!-- Decrease Quantity Button -->
+                                        <ImageButton Source="minus.png" 
+                                                     WidthRequest="30" HeightRequest="30" 
+                                                     CornerRadius="15" BackgroundColor="Blue"
+                                                     Command="{Binding DecreaseQuantityCommand}" />
+
+                                        <!-- Quantity Label -->
+                                        <Label Text="{Binding Quantity}" 
+                                               VerticalOptions="Center" HorizontalOptions="Center"
+                                               FontSize="16" FontAttributes="Bold" />
+
+                                        <!-- Increase Quantity Button -->
+                                        <ImageButton Source="add.png" 
+                                                     WidthRequest="30" HeightRequest="30" 
+                                                     CornerRadius="15" BackgroundColor="Blue"
+                                                     Command="{Binding IncreaseQuantityCommand}" />
+                                    </HorizontalStackLayout>
+
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Order Summary -->
+            <Frame BackgroundColor="#D3D3D3" Padding="10" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <!-- Order Summary Header -->
+                    <Label Text="Order Summary" FontAttributes="Bold" FontSize="18" TextColor="Black" />
+
+                    <!-- Total Items -->
+                    <HorizontalStackLayout>
+                        <Label Text="Items" HorizontalOptions="StartAndExpand" FontSize="16" />
+                        <Label Text="{Binding TotalItems}" HorizontalOptions="End" FontSize="16" Margin="310,0,0,0" />
                     </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Button Text="Proceed to Checkout" BackgroundColor="#4F46E5" TextColor="White" Margin="0,20,0,0" />
-    </VerticalStackLayout>
+
+                    <!-- Subtotal -->
+                    <HorizontalStackLayout>
+                        <Label Text="Subtotal" HorizontalOptions="StartAndExpand" FontSize="16" />
+                        <Label Text="{Binding Subtotal, StringFormat='${0}'}" HorizontalOptions="End" FontSize="16" Margin="265,0,0,0" />
+                    </HorizontalStackLayout>
+
+                    <!-- Discount -->
+                    <HorizontalStackLayout>
+                        <Label Text="Discount" HorizontalOptions="StartAndExpand" FontSize="16" />
+                        <Label Text="{Binding Discount, StringFormat='${0}'}" HorizontalOptions="End" FontSize="16" Margin="280,0,0,0" />
+                    </HorizontalStackLayout>
+
+                    <!-- Delivery Charges -->
+                    <HorizontalStackLayout>
+                        <Label Text="Delivery Charges" HorizontalOptions="StartAndExpand" FontSize="16" />
+                        <Label Text="{Binding DeliveryCharges, StringFormat='${0}'}" HorizontalOptions="End" FontSize="16" Margin="220,0,0,0" />
+                    </HorizontalStackLayout>
+
+                    <!-- Divider Line -->
+                    <BoxView HeightRequest="1" BackgroundColor="Gray" Margin="0,10,0,10" />
+
+                    <!-- Total -->
+                    <HorizontalStackLayout>
+                        <Label Text="Total" FontAttributes="Bold" HorizontalOptions="StartAndExpand" FontSize="16" />
+                        <Label Text="{Binding Total, StringFormat='${0}'}" FontAttributes="Bold" HorizontalOptions="End" FontSize="16" Margin="295,0,0,0" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Checkout Button -->
+            <Button Text="Check Out" BackgroundColor="Purple" TextColor="White" CornerRadius="25" HeightRequest="50" Command="{Binding CheckoutCommand}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

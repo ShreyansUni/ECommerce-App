@@ -6,4 +6,9 @@ public partial class SettingsPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void OnBackButton(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
 }
