@@ -20,7 +20,6 @@ namespace ECommerce_App.Model
 
         private void OnDelete()
         {
-            // Implement delete logic (e.g., remove from CartItems collection)
             Application.Current.MainPage.DisplayAlert("Deleted", $"{ProductName} removed from cart", "OK");
         }
     }

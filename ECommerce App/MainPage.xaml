@@ -113,35 +113,11 @@
             </Grid>
 
             <!-- Shop Now Section -->
-            <!--<Frame CornerRadius="10" HasShadow="True" BackgroundColor="#4F46E5">
-                <VerticalStackLayout Padding="20" Spacing="5">
-                    <Label Text="Enjoy Exclusive Discounts!" FontSize="20" TextColor="White" FontAttributes="Bold"/>
-                    <Label Text="Browse through our top-rated printers." TextColor="White" FontSize="14" />
-                    <Button Text="Shop Now" BackgroundColor="White" TextColor="#4F46E5" />
-                </VerticalStackLayout>
-            </Frame>-->
             <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#4F46E5">
                 <VerticalStackLayout Padding="20" Spacing="5">
                     <Label Text="Enjoy Exclusive Discounts!" FontSize="20" TextColor="White" FontAttributes="Bold"/>
                     <Label Text="Browse through our top-rated printers." TextColor="White" FontSize="14" />
-
-                    <!-- Image Carousel -->
-                    <CarouselView>
-                        <CarouselView.ItemsSource>
-                            <x:Array Type="{x:Type ImageSource}">
-                                <ImageSource>watch.jpg</ImageSource>
-                                <ImageSource>buds.jpg</ImageSource>
-                                <ImageSource>hoodie.jpg</ImageSource>
-                            </x:Array>
-                        </CarouselView.ItemsSource>
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding .}" Aspect="AspectFill" HeightRequest="200"/>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
-
-                    <Button Text="Shop Now" BackgroundColor="White" TextColor="#4F46E5"/>
+                    <Button Text="Shop Now" BackgroundColor="White" TextColor="#4F46E5" />
                 </VerticalStackLayout>
             </Frame>
 

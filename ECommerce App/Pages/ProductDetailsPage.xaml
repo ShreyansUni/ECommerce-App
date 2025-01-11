@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ECommerce_App.Pages.ProductDetailsPage"
-             Title="ProductDetailsPage">
+             x:Class="ECommerce_App.Pages.ProductDetailsPage">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
             <Grid>
@@ -10,28 +9,30 @@
                 <Image Source="{Binding Img}" Aspect="AspectFit" HeightRequest="310" WidthRequest="412" />
 
                 <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
-                       HorizontalOptions="Start" VerticalOptions="Start"
-                       Margin="5" WidthRequest="40" HeightRequest="40">
+                   HorizontalOptions="Start" VerticalOptions="Start"
+                   Margin="5" WidthRequest="40" HeightRequest="40">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBackButtonClicked" />
-                    </Frame.GestureRecognizers>   
+                    </Frame.GestureRecognizers>
                     <Image Source="frame.png" WidthRequest="20" HeightRequest="20" />
                 </Frame>
 
                 <!-- Rounded Box for Group Icon (Top Right) -->
                 <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
-                       HorizontalOptions="End" VerticalOptions="Start"
-                       Margin="5" WidthRequest="40" HeightRequest="40">
+                   HorizontalOptions="End" VerticalOptions="Start"
+                   Margin="5" WidthRequest="40" HeightRequest="40">
                     <Image Source="group.png" WidthRequest="20" HeightRequest="20" />
                 </Frame>
             </Grid>
+
+            <!-- Product Details -->
             <Label Text="{Binding Name}" FontSize="24" FontAttributes="Bold" />
             <Label Text="{Binding Description}" FontSize="16" TextColor="Gray" />
             <Label Text="Type:" FontSize="18" FontAttributes="Bold" />
             <Label Text="{Binding PrinterType}" FontSize="16" />
             <Label Text="Rate:" FontSize="18" FontAttributes="Bold" />
             <Label Text="{Binding Rate, StringFormat='Price: {0:C}'}" FontSize="16" TextColor="Purple" />
-            <Button Text="Add to Cart" Clicked="OnClickedCardButton" BackgroundColor="#4F46E5" TextColor="White" />
+            <Button Text="Add to Cart" Clicked="OnAddToCartClicked" BackgroundColor="#4F46E5" TextColor="White" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

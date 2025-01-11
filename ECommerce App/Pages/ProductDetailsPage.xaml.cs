@@ -1,39 +1,47 @@
 using ECommerce_App.Model;
+using ECommerce_App.ViewModel;
 
 namespace ECommerce_App.Pages;
 
 public partial class ProductDetailsPage : ContentPage
 {
-    public Printer SelectedPrinter { get; set; }
+    private Printer _selectedPrinter;
+    private CardViewModel _cartViewModel;
 
-    // Parameterless constructor
-    public ProductDetailsPage() : this(null) { }
-
-    // Constructor with Printer parameter
-    public ProductDetailsPage(Printer printer)
+    public ProductDetailsPage(Printer selectedPrinter, CardViewModel cardViewModel)
     {
         InitializeComponent();
-
-        // Set a default Printer if none is provided
-        SelectedPrinter = printer ?? new Printer
-        {
-            Name = "Default Printer",
-            Description = "Description not available.",
-            PrinterType = "Unknown",
-            Rate = 10,
-            Img = "printer_placeholder.png"
-        };
-
-        BindingContext = SelectedPrinter;
+        _selectedPrinter = selectedPrinter;
+        _cartViewModel = cardViewModel;
+        BindingContext = selectedPrinter;
     }
 
-    private async void OnClickedCardButton(object sender, EventArgs e)
+    public Printer SelectedPrinter
     {
-            await Navigation.PushAsync(new CardPage());
+        get => _selectedPrinter;
+        set
+        {
+            _selectedPrinter = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private async void OnAddToCartClicked(object sender, EventArgs e)
+    {
+        if (BindingContext is Printer selectedPrinter)
+        {
+            _cartViewModel.AddToCart(selectedPrinter);
+            Application.Current.MainPage.DisplayAlert("Success", $"{selectedPrinter.Name} added to cart.", "OK");
+            await Navigation.PushAsync(new CardPage(_cartViewModel));
+        }
+        else
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", "The BindingContext is not a Printer.", "OK");
+        }
     }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();  // This goes back to the previous page
+        await Navigation.PopAsync();
     }
 }

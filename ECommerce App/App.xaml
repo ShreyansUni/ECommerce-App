@@ -19,17 +19,14 @@
                     <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
                 </Tab>
                 <Tab Icon="search.png">
-                    <ShellContent Route="ProductList" ContentTemplate="{DataTemplate pages:ProductListPage}"/>
+                    <ShellContent Route="ProductList" ContentTemplate="{DataTemplate pages:SearchPage}"/>
                 </Tab>
                 <Tab Icon="shopping.png">
-                    <ShellContent ContentTemplate="{DataTemplate pages:ProductDetailsPage}"/>
+                    <ShellContent ContentTemplate="{DataTemplate pages:ProductListPage}"/>
                 </Tab>
                 <Tab Icon="user1.png">
                     <ShellContent ContentTemplate="{DataTemplate pages:ProfilePage}"/>
                 </Tab>
-                <!--<Tab Title="Settings" Icon="dotnet_bot.png">
-                    <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
-                </Tab>-->
             </TabBar>
         </Shell>
     </Application.MainPage>

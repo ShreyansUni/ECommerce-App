@@ -2,21 +2,23 @@ using ECommerce_App.Model;
 using ECommerce_App.ViewModel;
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
+using System.Windows.Input;
 
 namespace ECommerce_App.Pages;
 
-public partial class ProductListPage : ContentPage
+public partial class SearchPage : ContentPage
 {
     public ObservableCollection<Printer> Printers { get; set; } = new();
 
-    public ProductListPage()
+    //public ICommand NavigateToCartCommand { get; }
+    public SearchPage()
 	{
 		InitializeComponent();
         BindingContext = this;
-        LoadPrintersForProduct();
+        LoadPrintersForSearch();
     }
 
-    private async void LoadPrintersForProduct()
+    private async void LoadPrintersForSearch()
     {
         try
         {
@@ -37,37 +39,13 @@ public partial class ProductListPage : ContentPage
         }
     }
 
-    private async void OnProductClicked(object sender, EventArgs e)
-    {
-        Button button = sender as Button;
-        if (button?.BindingContext is Printer selectedPrinter)
-        {
-            var cardViewModel = new CardViewModel(); // Create the CardViewModel instance here
-            await Navigation.PushAsync(new ProductDetailsPage(selectedPrinter, cardViewModel));
-        }
-    }
-
-    //private void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
-    //{
-    //    var searchTerm = e.NewTextValue?.ToLower() ?? string.Empty;
-
-    //    // Filter Printers
-    //    var filteredPrinters = Printers.Where(p => p.name.ToLower().Contains(searchTerm) || p.Description.ToLower().Contains(searchTerm)).ToList();
-
-    //    // Update the ObservableCollection
-    //    Printers.Clear();
-    //    foreach (var printer in filteredPrinters)
-    //    {
-    //        Printers.Add(printer);
-    //    }
-    //}
     private void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
     {
         var searchTerm = e.NewTextValue?.ToLower() ?? string.Empty;
 
         if (string.IsNullOrEmpty(searchTerm))
         {
-            LoadPrintersForProduct();
+            LoadPrintersForSearch();
         }
         else
         {
@@ -82,9 +60,20 @@ public partial class ProductListPage : ContentPage
             }
         }
     }
+
     private async void OnBackProductButton(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
     }
+
+    //private async void OnProductTapped(object sender, TappedEventArgs e)
+    //{
+    //    if (e.Parameter is Printer selectedPrinter)
+    //    {
+    //        // Navigate to the cart page with the selected product details.
+    //        await Navigation.PushAsync(new CardPage(selectedPrinter));
+    //    }
+    //}
+
 
 }

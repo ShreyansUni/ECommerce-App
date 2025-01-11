@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ECommerce_App.Pages.RestrictedAccessPage"
+             Title="RestrictedAccessPage">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="Access Denied" FontSize="24" HorizontalOptions="Center" />
+        <Label Text="This device is not authorized to access the app." FontSize="16" HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

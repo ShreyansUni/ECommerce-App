@@ -5,30 +5,30 @@
     <ScrollView>
         <VerticalStackLayout Spacing="15" Padding="10">
 
-             <!--Search Bar--> 
-            <Frame Grid.Row="2" Grid.ColumnSpan="3" CornerRadius="250" 
-               HasShadow="True" Padding="0" Margin="0,25,0,10">
-                <SearchBar Placeholder="Search here.." 
-                       HorizontalOptions="FillAndExpand" 
-                       VerticalOptions="Center" 
-                       TextChanged="OnSearchBarTextChanged" />
-            </Frame>
-            <!--<Grid>
+             <!--Search Bar-->
+
+            <Grid>
                 <HorizontalStackLayout VerticalOptions="Start" Spacing="10" Margin="10">
-                    --><!-- Back Button Icon --><!--
                     <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
-   WidthRequest="40" HeightRequest="40">
+                           WidthRequest="40" HeightRequest="40">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnBackProductButton" />
                         </Frame.GestureRecognizers>
                         <Image Source="frame.png" WidthRequest="20" HeightRequest="20" />
                     </Frame>
 
-                    --><!-- Label Text for Settings --><!--
                     <Label Text="Products" FontAttributes="Bold" FontSize="20" 
-               VerticalOptions="Center" Margin="100,0,0,0" TextColor="Black" />
+                           VerticalOptions="Center" Margin="100,0,0,0" TextColor="Black" />
+
+
+
                 </HorizontalStackLayout>
-            </Grid>-->
+
+                <Frame BackgroundColor="LightGrey" CornerRadius="20" Padding="5" 
+                       WidthRequest="40" HeightRequest="40" HorizontalOptions="End">
+                    <Image Source="more.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" />
+                </Frame>
+            </Grid>
 
             <!--Product Collection View--> 
             <CollectionView ItemsSource="{Binding Printers}">
