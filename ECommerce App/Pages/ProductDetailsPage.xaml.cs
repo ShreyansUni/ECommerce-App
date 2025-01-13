@@ -44,4 +44,5 @@ public partial class ProductDetailsPage : ContentPage
     {
         await Navigation.PopAsync();
     }
+
 }

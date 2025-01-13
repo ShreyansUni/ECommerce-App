@@ -9,20 +9,29 @@ public partial class App : Application
     //{
     //    "CPH1893"
     //};
+    private LoaderPage _loaderPage;
     public App()
     {
         InitializeComponent();
+        _loaderPage = new LoaderPage();
 
-        //string currentDeviceIdentifier = GetDeviceIdentifier();
+        ShowLoader();
 
-        //if (IsDeviceAllowed(currentDeviceIdentifier))
-        //{
-        //    MainPage = new MainPage();
-        //}
-        //else
-        //{
-        //    MainPage = new RestrictedAccessPage();
-        //}
+        LoadData();
+    }
+
+    private void ShowLoader()
+    {
+        _loaderPage.IsVisible = true;
+        MainPage.Navigation.PushModalAsync(_loaderPage);
+    }
+
+    private async void LoadData()
+    {
+        await Task.Delay(3000); 
+
+        _loaderPage.IsVisible = false;
+        await MainPage.Navigation.PopModalAsync();
     }
 
     //private string GetDeviceIdentifier()

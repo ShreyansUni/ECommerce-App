@@ -6,7 +6,6 @@ namespace ECommerce_App.Pages;
 public partial class CardPage : ContentPage
 {
     private CardViewModel _viewModel;
-    //private Printer selectedPrinter;
 
     public CardPage(CardViewModel cardViewModel)
 	{
@@ -14,11 +13,6 @@ public partial class CardPage : ContentPage
         _viewModel = cardViewModel;
         BindingContext = _viewModel;
     }
-
-    //public CardPage(Printer selectedPrinter)
-    //{
-    //    this.selectedPrinter = selectedPrinter;
-    //}
 
     private void OnClickedCardButton(object sender, EventArgs e)
     {

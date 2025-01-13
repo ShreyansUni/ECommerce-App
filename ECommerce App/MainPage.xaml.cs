@@ -32,7 +32,6 @@ public partial class MainPage : ContentPage
                 var response = await client.GetStringAsync(apiUrl);
                 var printers = JsonConvert.DeserializeObject<List<Printer>>(response);
 
-                // Clear existing items and add fetched ones
                 Printers.Clear();
                 foreach (var printer in printers)
                 {

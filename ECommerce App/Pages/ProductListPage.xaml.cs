@@ -46,21 +46,6 @@ public partial class ProductListPage : ContentPage
             await Navigation.PushAsync(new ProductDetailsPage(selectedPrinter, cardViewModel));
         }
     }
-
-    //private void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
-    //{
-    //    var searchTerm = e.NewTextValue?.ToLower() ?? string.Empty;
-
-    //    // Filter Printers
-    //    var filteredPrinters = Printers.Where(p => p.name.ToLower().Contains(searchTerm) || p.Description.ToLower().Contains(searchTerm)).ToList();
-
-    //    // Update the ObservableCollection
-    //    Printers.Clear();
-    //    foreach (var printer in filteredPrinters)
-    //    {
-    //        Printers.Add(printer);
-    //    }
-    //}
     private void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
     {
         var searchTerm = e.NewTextValue?.ToLower() ?? string.Empty;
@@ -84,7 +69,7 @@ public partial class ProductListPage : ContentPage
     }
     private async void OnBackProductButton(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();
+        await Shell.Current.GoToAsync("//MainPage");
     }
 
 }

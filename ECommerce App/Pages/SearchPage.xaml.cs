@@ -8,18 +8,22 @@ namespace ECommerce_App.Pages;
 
 public partial class SearchPage : ContentPage
 {
+
+    private LoaderPage _loaderPage;
     public ObservableCollection<Printer> Printers { get; set; } = new();
 
-    //public ICommand NavigateToCartCommand { get; }
     public SearchPage()
 	{
 		InitializeComponent();
+        _loaderPage = new LoaderPage();
         BindingContext = this;
         LoadPrintersForSearch();
     }
 
     private async void LoadPrintersForSearch()
     {
+        _loaderPage.IsVisible = true;
+        await Navigation.PushModalAsync(_loaderPage);
         try
         {
             using HttpClient client = new();
@@ -36,6 +40,11 @@ public partial class SearchPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Error", $"Failed to fetch data: {ex.Message}", "OK");
+        }
+        finally
+        {
+            _loaderPage.IsVisible = false;
+            await Navigation.PopModalAsync();
         }
     }
 
@@ -63,17 +72,18 @@ public partial class SearchPage : ContentPage
 
     private async void OnBackProductButton(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();
+        await Shell.Current.GoToAsync("//MainPage");
     }
 
-    //private async void OnProductTapped(object sender, TappedEventArgs e)
-    //{
-    //    if (e.Parameter is Printer selectedPrinter)
-    //    {
-    //        // Navigate to the cart page with the selected product details.
-    //        await Navigation.PushAsync(new CardPage(selectedPrinter));
-    //    }
-    //}
+    private async void OnProductClicked(object sender, EventArgs e)
+    {
+        Button button = sender as Button;
+        if (button?.BindingContext is Printer selectedPrinter)
+        {
+            var cardViewModel = new CardViewModel();
+            await Navigation.PushAsync(new ProductDetailsPage(selectedPrinter, cardViewModel));
+        }
+    }
 
 
 }

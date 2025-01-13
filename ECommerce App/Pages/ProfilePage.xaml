@@ -6,7 +6,6 @@
     <ContentPage.Content>
         <VerticalStackLayout Padding="20" Spacing="30">
 
-            <!-- Profile Section -->
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Start">
                 <Frame BackgroundColor="LightGray" CornerRadius="50" HeightRequest="100" WidthRequest="100">
                     <Image Source="profile.png" Aspect="AspectFill" WidthRequest="100" HeightRequest="100" />
@@ -17,7 +16,6 @@
                        HorizontalOptions="Center" />
             </VerticalStackLayout>
 
-            <!-- Menu Section -->
             <VerticalStackLayout Spacing="15">
                 <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True">
                     <HorizontalStackLayout Spacing="10">
@@ -63,7 +61,6 @@
                 </Frame>
             </VerticalStackLayout>
 
-            <!-- Sign Out Button -->
             <Button Text="Sign Out" TextColor="Red" BackgroundColor="White" FontAttributes="Bold"
                     HorizontalOptions="Center" CornerRadius="20" Padding="10" />
 
